@@ -1,0 +1,153 @@
+2024-11-29 11:05:40 +0100    2132 execution.flow     INFO     Start executing nodes in thread pool mode.
+2024-11-29 11:05:40 +0100    2132 execution.flow     INFO     Start to run 4 nodes with concurrency level 16.
+2024-11-29 11:05:40 +0100    2132 execution.flow     INFO     Executing node prepare_examples. node run id: efc1c569-a884-48eb-9daa-fee04f9255c2_prepare_examples_0
+2024-11-29 11:05:40 +0100    2132 execution.flow     INFO     Executing node Prepare_text_for_convertion. node run id: efc1c569-a884-48eb-9daa-fee04f9255c2_Prepare_text_for_convertion_0
+2024-11-29 11:05:46 +0100    2132 execution          WARNING  [Prepare_text_for_convertion in line 0 (index starts from 0)] stderr> DefaultAzureCredential failed to retrieve a token from the included credentials.
+Attempted credentials:
+	EnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.
+Visit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.
+	ManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.
+	SharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.
+	AzureCliCredential: Azure CLI not found on path
+	AzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed
+	AzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.
+To mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot.
+2024-11-29 11:05:46 +0100    2132 execution          ERROR    Node Prepare_text_for_convertion in line 0 failed. Exception: Execution failure in 'Prepare_text_for_convertion': (Exception) StreamError(PermissionDenied(Some(AuthenticationError("ClientAuthenticationError: DefaultAzureCredential failed to retrieve a token from the included credentials.\nAttempted credentials:\n\tEnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.\nVisit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.\n\tManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.\n\tSharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.\n\tAzureCliCredential: Azure CLI not found on path\n\tAzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed\n\tAzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.\nTo mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot.")))).
+Traceback (most recent call last):
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 190, in _invoke_tool_with_timer
+    return f(**kwargs)
+           ^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\tracer.py", line 404, in wrapped
+    output = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\OneDrive\peppsy\prompt_flow\peppsy_gpt\Prepare_text_for_convertion.py", line 10, in prepare_text_for_conversion
+    examples_pd = pd.read_excel("azureml://subscriptions/4a40333d-da0e-4cdb-8711-92dc11a1d1bd/resourcegroups/matsel-rg/workspaces/pepppsy/datastores/workspaceblobstore/paths/UI/2024-08-29_124003_UTC/Translated_Comments.xls", usecols=columns)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\util\_decorators.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\excel\_base.py", line 482, in read_excel
+    io = ExcelFile(io, storage_options=storage_options, engine=engine)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\excel\_base.py", line 1652, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\excel\_base.py", line 1525, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\common.py", line 713, in get_handle
+    ioargs = _get_filepath_or_buffer(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\common.py", line 411, in _get_filepath_or_buffer
+    ).open()
+      ^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\core.py", line 134, in open
+    return self.__enter__()
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\core.py", line 102, in __enter__
+    f = self.fs.open(self.path, mode=mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\asyn.py", line 115, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\asyn.py", line 100, in sync
+    raise return_result
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\asyn.py", line 55, in _runner
+    result[0] = await coro
+                ^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\azureml\fsspec\spec.py", line 499, in _open
+    _reclassify_rslex_error(e)
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\azureml\dataprep\api\mltable\_validation_and_error_handler.py", line 90, in _reclassify_rslex_error
+    raise err
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\azureml\fsspec\spec.py", line 489, in _open
+    return si.open(buffering_options=BufferingOptions(64, downloader))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Exception: StreamError(PermissionDenied(Some(AuthenticationError("ClientAuthenticationError: DefaultAzureCredential failed to retrieve a token from the included credentials.\nAttempted credentials:\n\tEnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.\nVisit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.\n\tManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.\n\tSharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.\n\tAzureCliCredential: Azure CLI not found on path\n\tAzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed\n\tAzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.\nTo mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot."))))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 88, in invoke_tool
+    result = self._invoke_tool_with_timer(node, f, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 201, in _invoke_tool_with_timer
+    raise ToolExecutionError(node_name=node_name, module=module) from e
+promptflow._core._errors.ToolExecutionError: Execution failure in 'Prepare_text_for_convertion': (Exception) StreamError(PermissionDenied(Some(AuthenticationError("ClientAuthenticationError: DefaultAzureCredential failed to retrieve a token from the included credentials.\nAttempted credentials:\n\tEnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.\nVisit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.\n\tManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.\n\tSharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.\n\tAzureCliCredential: Azure CLI not found on path\n\tAzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed\n\tAzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.\nTo mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot."))))
+2024-11-29 11:05:47 +0100    2132 execution.flow     ERROR    Flow execution has failed. Cancelling all running nodes: prepare_examples,Prepare_text_for_convertion.
+2024-11-29 11:05:48 +0100    2132 execution          WARNING  [prepare_examples in line 0 (index starts from 0)] stderr> DefaultAzureCredential failed to retrieve a token from the included credentials.
+Attempted credentials:
+	EnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.
+Visit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.
+	ManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.
+	SharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.
+	AzureCliCredential: Azure CLI not found on path
+	AzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed
+	AzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.
+To mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot.
+2024-11-29 11:05:48 +0100    2132 execution          ERROR    Node prepare_examples in line 0 failed. Exception: Execution failure in 'prepare_examples': (Exception) StreamError(PermissionDenied(Some(AuthenticationError("ClientAuthenticationError: DefaultAzureCredential failed to retrieve a token from the included credentials.\nAttempted credentials:\n\tEnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.\nVisit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.\n\tManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.\n\tSharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.\n\tAzureCliCredential: Azure CLI not found on path\n\tAzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed\n\tAzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.\nTo mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot.")))).
+Traceback (most recent call last):
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 190, in _invoke_tool_with_timer
+    return f(**kwargs)
+           ^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\tracer.py", line 404, in wrapped
+    output = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\OneDrive\peppsy\prompt_flow\peppsy_gpt\prepare_examples.py", line 19, in prepare_examples
+    examples_pd = pd.read_excel("azureml://subscriptions/4a40333d-da0e-4cdb-8711-92dc11a1d1bd/resourcegroups/matsel-rg/workspaces/pepppsy/datastores/workspaceblobstore/paths/UI/2024-08-29_124003_UTC/Translated_Comments.xls", usecols=columns)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\util\_decorators.py", line 211, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\util\_decorators.py", line 331, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\excel\_base.py", line 482, in read_excel
+    io = ExcelFile(io, storage_options=storage_options, engine=engine)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\excel\_base.py", line 1652, in __init__
+    ext = inspect_excel_format(
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\excel\_base.py", line 1525, in inspect_excel_format
+    with get_handle(
+         ^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\common.py", line 713, in get_handle
+    ioargs = _get_filepath_or_buffer(
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\pandas\io\common.py", line 411, in _get_filepath_or_buffer
+    ).open()
+      ^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\core.py", line 134, in open
+    return self.__enter__()
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\core.py", line 102, in __enter__
+    f = self.fs.open(self.path, mode=mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\asyn.py", line 115, in wrapper
+    return sync(self.loop, func, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\asyn.py", line 100, in sync
+    raise return_result
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\fsspec\asyn.py", line 55, in _runner
+    result[0] = await coro
+                ^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\azureml\fsspec\spec.py", line 499, in _open
+    _reclassify_rslex_error(e)
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\azureml\dataprep\api\mltable\_validation_and_error_handler.py", line 90, in _reclassify_rslex_error
+    raise err
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\azureml\fsspec\spec.py", line 489, in _open
+    return si.open(buffering_options=BufferingOptions(64, downloader))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Exception: StreamError(PermissionDenied(Some(AuthenticationError("ClientAuthenticationError: DefaultAzureCredential failed to retrieve a token from the included credentials.\nAttempted credentials:\n\tEnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.\nVisit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.\n\tManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.\n\tSharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.\n\tAzureCliCredential: Azure CLI not found on path\n\tAzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed\n\tAzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.\nTo mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot."))))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 88, in invoke_tool
+    result = self._invoke_tool_with_timer(node, f, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\matse\AppData\Local\Programs\Python\Python311\Lib\site-packages\promptflow\_core\flow_execution_context.py", line 201, in _invoke_tool_with_timer
+    raise ToolExecutionError(node_name=node_name, module=module) from e
+promptflow._core._errors.ToolExecutionError: Execution failure in 'prepare_examples': (Exception) StreamError(PermissionDenied(Some(AuthenticationError("ClientAuthenticationError: DefaultAzureCredential failed to retrieve a token from the included credentials.\nAttempted credentials:\n\tEnvironmentCredential: EnvironmentCredential authentication unavailable. Environment variables are not fully configured.\nVisit https://aka.ms/azsdk/python/identity/environmentcredential/troubleshoot to troubleshoot this issue.\n\tManagedIdentityCredential: ManagedIdentityCredential authentication unavailable, no response from the IMDS endpoint.\n\tSharedTokenCacheCredential: SharedTokenCacheCredential authentication unavailable. No accounts were found in the cache.\n\tAzureCliCredential: Azure CLI not found on path\n\tAzurePowerShellCredential: Az.Account module >= 2.2.0 is not installed\n\tAzureDeveloperCliCredential: Azure Developer CLI could not be found. Please visit https://aka.ms/azure-dev for installation instructions and then,once installed, authenticate to your Azure account using 'azd auth login'.\nTo mitigate this issue, please refer to the troubleshooting guidelines here at https://aka.ms/azsdk/python/identity/defaultazurecredential/troubleshoot."))))

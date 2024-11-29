@@ -1,0 +1,49 @@
+{
+  "orientation": "Vertical",
+  "nodeLayouts": {
+    "inputs": {
+      "x": 697.5,
+      "y": 42,
+      "index": -1
+    },
+    "outputs": {
+      "x": 637.5,
+      "y": 578,
+      "index": -1
+    },
+    "refined_output": {
+      "x": 557.5,
+      "y": 444,
+      "height": 75,
+      "index": 0
+    },
+    "prepare_examples": {
+      "x": 140,
+      "y": 176,
+      "height": 75,
+      "index": 1
+    },
+    "convert": {
+      "x": 227.5,
+      "y": 310,
+      "height": 75,
+      "index": 2
+    },
+    "Prepare_text_for_convertion": {
+      "x": 557.5,
+      "y": 310,
+      "height": 75,
+      "index": 3
+    }
+  },
+  "viewport": {
+    "transformMatrix": [
+      0.6871156038458486,
+      0,
+      0,
+      0.6871156038458486,
+      137.00182940006349,
+      301.1565204846404
+    ]
+  }
+}

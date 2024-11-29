@@ -1,0 +1,74 @@
+id: template_standard_flow
+name: Template Standard Flow
+inputs:
+  text:
+    type: string
+    default: Managed well over the holidays, but then experienced PMS. Cousin has
+      been diagnosed with pulmonary fibrosis, read about it online, which caused
+      significant anxiety and started a cycle of worrying thoughts. Couldn't
+      find peace, had physical reactions, and concentration suffered. Went to
+      work regardless, which was very difficult. Suspected severe PMS, agreed to
+      increase Sertraline 7 days before the start of the cycle, otherwise
+      treatment remains unchanged. Prescription issued, no indication of
+      psychotic symptoms.
+    is_chat_input: false
+  example_size:
+    type: int
+    is_chat_input: false
+  text_to_be_converted:
+    type: int
+    is_chat_input: false
+outputs:
+  converted:
+    type: string
+    reference: ${refined_output.output}
+nodes:
+- name: refined_output
+  type: python
+  source:
+    type: code
+    path: echo.py
+  inputs:
+    converted: ${convert.output}
+    original: ${Prepare_text_for_convertion.output}
+  use_variants: false
+- name: prepare_examples
+  type: python
+  source:
+    type: code
+    path: prepare_examples.py
+  inputs:
+    example_size: ${inputs.example_size}
+  use_variants: false
+- name: convert
+  type: llm
+  source:
+    type: code
+    path: convert.jinja2
+  inputs:
+    model: gpt-3.5-turbo
+    temperature: 2
+    top_p: 1
+    max_tokens: 256
+    response_format:
+      type: text
+    presence_penalty: 0
+    frequency_penalty: 0
+    examples: ${prepare_examples.output}
+    input: ${Prepare_text_for_convertion.output}
+  provider: OpenAI
+  connection: gpt_for_preprompting
+  api: chat
+  module: promptflow.tools.openai
+  use_variants: false
+- name: Prepare_text_for_convertion
+  type: python
+  source:
+    type: code
+    path: Prepare_text_for_convertion.py
+  inputs:
+    num: ${inputs.text_to_be_converted}
+  use_variants: false
+node_variants: {}
+environment:
+  python_requirements_txt: requirements.txt
